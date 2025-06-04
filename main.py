@@ -28,7 +28,7 @@ model_choice = st.sidebar.radio(
 
 # =================== Sidebar Info ===================
 st.sidebar.markdown("""
-### ℹ️ Model Overview
+### 📖 Model Overview
 
 **Model 1: On-site ROSC Prediction**  
 Predicts the likelihood of return of spontaneous circulation (ROSC) at the scene using pre-hospital indicators such as bystander CPR, AED use, initial rhythm, and EMS response time.
@@ -38,24 +38,33 @@ Estimates 30-day survival after out-of-hospital cardiac arrest (OHCA) based on b
 """)
 
 
-# 更改预测状态按钮
+# # 更改预测状态按钮
 # if st.sidebar.button("🔄 Reset Prediction"):
 #     st.session_state["predict_done"] = False
 
 # =================== Header(免责声明) ===================
-st.markdown("""
-<div style='
-    background-color: #fff3cd;
-    border-left: 6px solid #ffeeba;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
-    color: #856404;
-    margin-bottom: 16px;
-'>
-    ⚠️ This web page is for testing purposes only. The data provided is for reference only and has no clinical significance.
-</div>
-""", unsafe_allow_html=True)
+
+st.sidebar.markdown(
+    """
+    <div style='font-size: 0.9em;'>
+       ⚠️ Note: This model was developed using OHCA data only from Shenzhen Bao’an District, and its applicability to other regions or populations may be limited.
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+# st.markdown("""
+# <div style='
+#     background-color: #fff3cd;
+#     border-left: 6px solid #ffeeba;
+#     padding: 12px;
+#     border-radius: 8px;
+#     font-size: 16px;
+#     color: #856404;
+#     margin-bottom: 16px;
+# '>
+#     ⚠️ This web page is for testing purposes only. The data provided is for reference only and has no clinical significance.
+# </div>
+# """, unsafe_allow_html=True)
 
 if model_choice == "Model 1 (ROSC on-site)":
     st.markdown("## Return of Spontaneous Circulation on-site")
