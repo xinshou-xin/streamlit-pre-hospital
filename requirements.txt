@@ -6,3 +6,4 @@ plotly==5.9.0
 shap==0.41.0
 streamlit==1.33.0
 streamlit_echarts==0.4.0
+python==3.10.14
