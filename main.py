@@ -19,14 +19,15 @@ model_choice = st.sidebar.radio("Select Model", ["Model 1 (ROSC on-site)", "Mode
 
 # =================== Sidebar Info ===================
 st.sidebar.markdown("""
-    ### ℹ️ Model Information
+### ℹ️ Model Background
 
-    **Model 1 (ROSC on-site):**  
-    This model predicts whether the patient will achieve Return of Spontaneous Circulation (ROSC) on-site based on pre-hospital features such as bystander actions, initial rhythm, and EMS response time.
+**Model 1: On-site Return of Spontaneous Circulation (ROSC)**  
+Developed to support real-time pre-hospital decision-making, this model predicts the probability of achieving ROSC following out-of-hospital cardiac arrest (OHCA). It is based on early-phase variables including witnessed status, bystander CPR/AED application, initial cardiac rhythm, and EMS response intervals.
 
-    **Model 2 (30-day survival):**  
-    This model predicts 30-day survival using both pre-hospital and in-hospital features, including interventions during resuscitation and early hospital care.
-    """)
+**Model 2: 30-day Survival Post-OHCA**  
+This model estimates the likelihood of 30-day survival following OHCA by integrating both pre-hospital and in-hospital clinical factors. These include resuscitative efforts, airway and circulatory interventions, and early hospital management, offering insight into short-term prognosis.
+""")
+
 
 # 更改预测状态按钮
 # if st.sidebar.button("🔄 Reset Prediction"):
@@ -47,11 +48,15 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+if model_choice == "Model 1 (ROSC on-site)":
+    st.markdown("## Return of Spontaneous Circulation on-site")
+elif model_choice == "Model 2 (30-day survival)":
+    st.markdown("## 30-day survival")
 
 # =================== Pre-hospital Features (A组) ===================
-st.markdown("## Return of Spontaneous Circulation on-site")
+# st.markdown("## Return of Spontaneous Circulation on-site")
 a_data = {}
-with st.expander("Return of Spontaneous Circulation on-site Data", expanded=True):
+with st.expander("pre-hospital data", expanded=True):
     col1, col2 = st.columns(2)
     with col1:
         a_data["age"] = st.number_input("Age", 18, 120, 65)
@@ -72,8 +77,8 @@ with st.expander("Return of Spontaneous Circulation on-site Data", expanded=True
 # =================== Post-hospital Features (B组，仅M2) ===================
 b_data = {}
 if model_choice == "Model 2 (30-day survival)":
-    st.markdown("## 30-day survival")
-    with st.expander("30-day survival Data", expanded=True):
+    # st.markdown("## 30-day survival")
+    with st.expander("in-hospital data", expanded=True):
         col1, col2 = st.columns(2)
         with col1:
             b_data["Use of electrical defibrillation in ED"] = int(st.selectbox("Defibrillation in ED", ["No", "Yes"]) == "Yes")
