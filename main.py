@@ -28,13 +28,13 @@ model_choice = st.sidebar.radio(
 
 # =================== Sidebar Info ===================
 st.sidebar.markdown("""
-### ℹ️ Model Background
+### ℹ️ Model Overview
 
-**Model 1: On-site Return of Spontaneous Circulation (ROSC)**  
-Developed to support real-time pre-hospital decision-making, this model predicts the probability of achieving ROSC following out-of-hospital cardiac arrest (OHCA). It is based on early-phase variables including witnessed status, bystander CPR/AED application, initial cardiac rhythm, and EMS response intervals.
+**Model 1: On-site ROSC Prediction**  
+Predicts the likelihood of return of spontaneous circulation (ROSC) at the scene using pre-hospital indicators such as bystander CPR, AED use, initial rhythm, and EMS response time.
 
-**Model 2: 30-day Survival Post-OHCA**  
-This model estimates the likelihood of 30-day survival following OHCA by integrating both pre-hospital and in-hospital clinical factors. These include resuscitative efforts, airway and circulatory interventions, and early hospital management, offering insight into short-term prognosis.
+**Model 2: 30-day Survival Prediction**  
+Estimates 30-day survival after out-of-hospital cardiac arrest (OHCA) based on both pre-hospital and in-hospital factors, including emergency interventions and early hospital care.
 """)
 
 
