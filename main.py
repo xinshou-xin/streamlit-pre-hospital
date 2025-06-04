@@ -130,28 +130,42 @@ else:
 # 按钮样式
 st.markdown("""
     <style>
+        /* 默认样式 */
         .stButton > button {
             display: block;
             margin: 0 auto;
-            background-color: #e8f0fe;  /* 淡蓝色 */
-            color: #1967d2;             /* Google蓝 */
-            font-size: 16px;
-            font-weight: 600;
-            padding: 12px 28px;
+            background-color: #e8f0fe;
+            color: #1967d2;
             border: 1px solid #1967d2;
             border-radius: 10px;
-            cursor: pointer;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 600;
             transition: all 0.3s ease;
         }
 
+        /* hover 状态 */
         .stButton > button:hover {
             background-color: #d2e3fc;
             color: #174ea6;
             border-color: #174ea6;
         }
+
+        /* 按下状态 */
+        .stButton > button:active {
+            background-color: #e6f4ea;  /* 淡绿色 */
+            color: #137333;
+            border-color: #137333;
+        }
+
+        /* 点击后获得焦点状态 */
+        .stButton > button:focus:not(:active) {
+            background-color: #e6f4ea;
+            color: #137333;
+            border-color: #137333;
+        }
     </style>
 """, unsafe_allow_html=True)
-
 if st.button("🚀 Predict"):
     st.session_state["predict_done"] = True
 # 仪表盘配置模板函数
