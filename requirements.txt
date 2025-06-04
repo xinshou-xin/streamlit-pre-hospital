@@ -7,3 +7,4 @@ numpy~=1.24
 plotly~=5.9.0
 catboost~=1.2
 streamlit-echarts==0.4.0
+shap~=0.41.0
