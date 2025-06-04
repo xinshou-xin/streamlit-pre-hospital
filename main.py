@@ -26,6 +26,13 @@ model_choice = st.sidebar.radio(
     "", ["Model 1 (ROSC on-site)", "Model 2 (30-day survival)"]
 )
 
+# Reset prediction when model is changed
+if "last_model" not in st.session_state:
+    st.session_state["last_model"] = model_choice
+if st.session_state["last_model"] != model_choice:
+    st.session_state["predict_done"] = False
+    st.session_state["last_model"] = model_choice
+
 # =================== Sidebar Info ===================
 st.sidebar.markdown("""
 ### 📖 Model Overview
@@ -52,19 +59,6 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True
 )
-# st.markdown("""
-# <div style='
-#     background-color: #fff3cd;
-#     border-left: 6px solid #ffeeba;
-#     padding: 12px;
-#     border-radius: 8px;
-#     font-size: 16px;
-#     color: #856404;
-#     margin-bottom: 16px;
-# '>
-#     ⚠️ This web page is for testing purposes only. The data provided is for reference only and has no clinical significance.
-# </div>
-# """, unsafe_allow_html=True)
 
 if model_choice == "Model 1 (ROSC on-site)":
     st.markdown("## Return of Spontaneous Circulation on-site")
@@ -82,6 +76,7 @@ with st.expander("pre-hospital data", expanded=True):
         a_data["Time to ambulance arrival"] = st.number_input("Ambulance arrival time (minutes)", 1, 60, 10)
         a_data["Performer of defibrillation_Medical staff"] = int(st.selectbox("Defibrillation by medical staff", ["No", "Yes"]) == "Yes")
         a_data["Bystander CPR"] = int(st.selectbox("Bystander CPR performed", ["No", "Yes"]) == "Yes")
+        a_data["Training rate_6 months"] = st.number_input("CPR training rate (recent 6 months)", 0.00, 5.00, 1.00)
     with col2:
         initial_rhythm = st.selectbox("Initial rhythm of cardiac arrest", ["Normal heart rhythm", "Shockable heart rhythm", "Non-shockable heart rhythm"])
         a_data["Initial rhythm of cardiac arrest_Normal heart rhythm"] = int(initial_rhythm == "Normal heart rhythm")
@@ -89,8 +84,8 @@ with st.expander("pre-hospital data", expanded=True):
         a_data["Initial rhythm of cardiac arrest_Non-shockable heart rhythm"] = int(initial_rhythm == "Non-shockable heart rhythm")
         a_data["Out-of-hospital electrical defibrillation"] = int(st.selectbox("Out-of-hospital defibrillation", ["No", "Yes"]) == "Yes")
         a_data["Location_Family house"] = int(st.selectbox("Event occurred at family house", ["No", "Yes"]) == "Yes")
-        # a_data["Coronary heart disease-related factors present"] = int(st.selectbox("CHD-related factors present", ["No", "Yes"]) == "Yes")
         a_data["5-minute social rescue circle"] = int(st.selectbox("Construction of the 5-minute social rescue circle", ["No", "Yes"]) == "Yes")
+        a_data["Number of AEDs within 75m"] = st.number_input("Number of AEDs within 75 meters", 0, 20, 1)
 
 # =================== Post-hospital Features (B组，仅M2) ===================
 b_data = {}
@@ -124,7 +119,7 @@ x_features_m1 = [
     'age','Bystander use of AEDs','Time to ambulance arrival','Performer of defibrillation_Medical staff',
     'Bystander CPR','Initial rhythm of cardiac arrest_Normal heart rhythm',
     'Initial rhythm of cardiac arrest_Shockable heart rhythm','Initial rhythm of cardiac arrest_Non-shockable heart rhythm',
-    'Out-of-hospital electrical defibrillation','Location_Family house','5-minute social rescue circle'
+    'Out-of-hospital electrical defibrillation','Location_Family house','5-minute social rescue circle','Training rate_6 months','Number of AEDs within 75m'
 ]# 'Coronary heart disease-related factors present'
 x_features_m2 = x_features_m1 + [
     'Use of electrical defibrillation in ED','Use of mechanical CPR device in ED',

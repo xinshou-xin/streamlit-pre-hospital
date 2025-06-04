@@ -1,12 +1,14 @@
 feature name,importance
-Bystander CPR,0.5724080276835343
-age,0.4716904760378557
-Location_Family house,0.40801398964057944
-Time to ambulance arrival,0.334761907651266
-Performer of defibrillation_Medical staff,0.2519921676221761
-Initial rhythm of cardiac arrest_Non-shockable heart rhythm,0.0866703798183995
-5-minute social rescue circle,0.08574080374719267
-Out-of-hospital electrical defibrillation,0.04907535430959662
-Initial rhythm of cardiac arrest_Shockable heart rhythm,0.042959283120211314
-Initial rhythm of cardiac arrest_Normal heart rhythm,0.007968193164966952
-Bystander use of AEDs,0.006384083762311001
+Bystander CPR,0.5403007419957723
+age,0.4064230964016371
+Location_Family house,0.3540911762642944
+Time to ambulance arrival,0.26582262693112507
+Performer of defibrillation_Medical staff,0.25061191038166314
+Training rate_6 months,0.21667955734569808
+Initial rhythm of cardiac arrest_Non-shockable heart rhythm,0.07133428862904992
+5-minute social rescue circle,0.05138392203182962
+Initial rhythm of cardiac arrest_Shockable heart rhythm,0.05029347999074824
+Out-of-hospital electrical defibrillation,0.037509265929579955
+Initial rhythm of cardiac arrest_Normal heart rhythm,0.007853819044619252
+Number of AEDs within 75m,0.005384500066829532
+Bystander use of AEDs,0.005358224755007826
