@@ -137,7 +137,7 @@ Missing values were handled with median/mode imputation. Feature importance was 
 
 For collaboration, questions, or feedback:
 
-**黄金鑫**
+**huangjinxin**
 Email: `2602535898@qq.com`
 GitHub: https://github.com/xinshou-xin
 
