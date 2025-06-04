@@ -15,7 +15,16 @@ st.set_page_config(page_title="Mortality Prediction", layout="wide", page_icon="
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # =================== Sidebar ===================
-model_choice = st.sidebar.radio("Select Model", ["Model 1 (ROSC on-site)", "Model 2 (30-day survival)"])
+# model_choice = st.sidebar.radio("Please select a prediction model:", ["Model 1 (ROSC on-site)", "Model 2 (30-day survival)"])
+st.sidebar.markdown(
+    """
+    <div style=' font-weight: bold;'>Please select a prediction model:</div>
+    """,
+    unsafe_allow_html=True
+)
+model_choice = st.sidebar.radio(
+    "", ["Model 1 (ROSC on-site)", "Model 2 (30-day survival)"]
+)
 
 # =================== Sidebar Info ===================
 st.sidebar.markdown("""
@@ -89,7 +98,8 @@ if model_choice == "Model 2 (30-day survival)":
             b_data["TTM for ED"] = int(st.selectbox("Therapeutic temperature management (TTM) for ED", ["No", "Yes"]) == "Yes")
             b_data["Use of mechanical CPR device in ED"] = int(st.selectbox("Mechanical CPR device in ED", ["No", "Yes"]) == "Yes")
             b_data["Use of medications in ED"] = int(st.selectbox("Medications used in ED", ["No", "Yes"]) == "Yes")
-            b_data["Return of spontaneous circulation in ED"] = int(st.selectbox("Return of spontaneous circulation in ED", ["No", "Yes"]) == "Yes")
+            b_data["Return of spontaneous circulation in ED"] = int(st.selectbox("Return of spontaneous circulation in ED", ["No", "Yes"], index=1) == "Yes")
+
 
 # =================== Load Models & Data ===================
 model1_path = "M1_compare/modelsM1/catboost_model_fold_2.pkl"
