@@ -76,7 +76,7 @@ with st.expander("pre-hospital data", expanded=True):
         a_data["Time to ambulance arrival"] = st.number_input("Ambulance arrival time (minutes)", 1, 60, 10)
         a_data["Performer of defibrillation_Medical staff"] = int(st.selectbox("Defibrillation by medical staff", ["No", "Yes"]) == "Yes")
         a_data["Bystander CPR"] = int(st.selectbox("Bystander CPR performed", ["No", "Yes"]) == "Yes")
-        a_data["Training rate_6 months"] = st.number_input("CPR training rate (recent 6 months)", 0.00, 5.00, 1.00)
+        a_data["Training rate_6 months"] = st.number_input("CPR training rate (recent 6 months, %)", 0.00, 5.00, 0.37)
     with col2:
         initial_rhythm = st.selectbox("Initial rhythm of cardiac arrest", ["Normal heart rhythm", "Shockable heart rhythm", "Non-shockable heart rhythm"])
         a_data["Initial rhythm of cardiac arrest_Normal heart rhythm"] = int(initial_rhythm == "Normal heart rhythm")
